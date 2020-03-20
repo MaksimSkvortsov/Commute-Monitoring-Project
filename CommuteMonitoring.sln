@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6873C4DD-25BC-4069-B4C9-D1CB57DE3B3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommuteMonitoring.TrafficMonitor", "src\CommuteMonitoring.TrafficMonitor\CommuteMonitoring.TrafficMonitor.csproj", "{BC129987-2A56-46AA-8A95-84CAFCC5B248}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7202CA8B-D95C-4D3C-BC0E-452FA18502AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuteMonitoring.TrafficMonitor.IntegrationTests", "tests\CommuteMonitoring.TrafficMonitor.IntegrationTests\CommuteMonitoring.TrafficMonitor.IntegrationTests.csproj", "{580E0384-73E9-4DBE-9566-4485725D5BDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC129987-2A56-46AA-8A95-84CAFCC5B248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC129987-2A56-46AA-8A95-84CAFCC5B248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC129987-2A56-46AA-8A95-84CAFCC5B248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC129987-2A56-46AA-8A95-84CAFCC5B248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC129987-2A56-46AA-8A95-84CAFCC5B248} = {6873C4DD-25BC-4069-B4C9-D1CB57DE3B3D}
+		{580E0384-73E9-4DBE-9566-4485725D5BDC} = {7202CA8B-D95C-4D3C-BC0E-452FA18502AE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6299D2AB-C5A0-42BE-A28C-947A07BB8654}
+	EndGlobalSection
+EndGlobal
