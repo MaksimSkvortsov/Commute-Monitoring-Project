@@ -20,27 +20,35 @@ namespace CommuteMonitoring.TrafficMonitor.Infrastructure
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var time = ParseRespnse(content);
-
-                    return time;
+                    response.EnsureSuccessStatusCode();
+                }
+                catch(HttpRequestException ex)
+                {
+                    throw new GoogleApiException("Request failed", ex);
                 }
 
-                //ToDo: throw exception
-                return 0;
+                var content = await response.Content.ReadAsStringAsync();
+                return GetTimeFromResponse(content);
             }
         }
 
-        private static int ParseRespnse(string jsonResponse)
+        private static int GetTimeFromResponse(string jsonResponse)
         {
             JObject googleSearch = JObject.Parse(jsonResponse);
 
-            var result = googleSearch["routes"].First["legs"].First["duration_in_traffic"]["value"];
-            var resultInSeconds = result.ToObject<int>();
+            try
+            {
+                var result = googleSearch["routes"].First["legs"].First["duration_in_traffic"]["value"];
+                var resultInSeconds = result.ToObject<int>();
 
-            return resultInSeconds;
+                return resultInSeconds;
+            }
+            catch(NullReferenceException ex)
+            {
+                throw new GoogleApiException("Response parsing failed", ex);
+            }
         }
     }
 }

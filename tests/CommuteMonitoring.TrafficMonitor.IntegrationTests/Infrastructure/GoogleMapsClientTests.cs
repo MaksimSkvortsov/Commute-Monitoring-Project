@@ -19,5 +19,12 @@ namespace CommuteMonitoring.TrafficMonitor.IntegrationTests.Infrastructure
 
             Assert.True(duration > 0);
         }
+
+        [Fact]
+        public async Task GetDistance_InvalidKey_Exception()
+        {
+            var target = new GoogleMapsClient("12345");
+            await Assert.ThrowsAsync<GoogleApiException>(() => target.GetDistnace(Settings.DirectionOrigin, Settings.DirectionDestination));
+        }
     }
 }
