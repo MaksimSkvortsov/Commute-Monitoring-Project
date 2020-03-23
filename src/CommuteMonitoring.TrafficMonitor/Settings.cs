@@ -18,14 +18,13 @@ namespace CommuteMonitoring.TrafficMonitor
 
         public static string DirectionDestination => GetEnvironmentVariable("DirectionDestination");
 
-        public static string TelegramApiKey => GetEnvironmentVariable("TelegramApiKey");
-
-        public static string TelegramChatId => GetEnvironmentVariable("TelegramChatId");
-
         public static string MonitoringStartUrl => GetEnvironmentVariable("MonitoringStartUrl");
 
         public static string FunctionAuthenticationCode => GetEnvironmentVariable("FunctionAuthenticationCode");
 
+        public static string NotificationQueueConnection => GetEnvironmentVariable("NotificationQueueConnection");
+
+        public static string NotificationQueueName => GetEnvironmentVariable("NotificationQueueName");
 
 
         private static TimeSpan GetTimeEnvironmentVariable(string key)

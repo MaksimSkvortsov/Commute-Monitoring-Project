@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7202CA8B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuteMonitoring.TrafficMonitor.IntegrationTests", "tests\CommuteMonitoring.TrafficMonitor.IntegrationTests\CommuteMonitoring.TrafficMonitor.IntegrationTests.csproj", "{580E0384-73E9-4DBE-9566-4485725D5BDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommuteMonitoring.Notifications", "src\CommuteMonitoring.Notifications\CommuteMonitoring.Notifications.csproj", "{1912B8F1-2B9B-4C12-B517-5446E24123DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{580E0384-73E9-4DBE-9566-4485725D5BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1912B8F1-2B9B-4C12-B517-5446E24123DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1912B8F1-2B9B-4C12-B517-5446E24123DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1912B8F1-2B9B-4C12-B517-5446E24123DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1912B8F1-2B9B-4C12-B517-5446E24123DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC129987-2A56-46AA-8A95-84CAFCC5B248} = {6873C4DD-25BC-4069-B4C9-D1CB57DE3B3D}
 		{580E0384-73E9-4DBE-9566-4485725D5BDC} = {7202CA8B-D95C-4D3C-BC0E-452FA18502AE}
+		{1912B8F1-2B9B-4C12-B517-5446E24123DF} = {6873C4DD-25BC-4069-B4C9-D1CB57DE3B3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6299D2AB-C5A0-42BE-A28C-947A07BB8654}

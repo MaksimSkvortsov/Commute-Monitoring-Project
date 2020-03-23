@@ -1,8 +1,10 @@
 ﻿using CommuteMonitoring.TrafficMonitor.Infrastructure;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +28,14 @@ namespace CommuteMonitoring.TrafficMonitor
 
                 if (currentTime > timeToLeave)
                 {
-                    await SendNotification(context, currentTime, parameters.DestinationArrivalTime, timeToDestination);
+                    var input = new NotificationParameters
+                    {
+                        CurrentTime = currentTime,
+                        DestinationTime = parameters.DestinationArrivalTime,
+                        TimeToDestination = timeToDestination
+                    };
+                    await context.CallActivityAsync<NotificationParameters>("func-sendnotification", input);
+                    
                     return;
                 }
 
@@ -45,24 +54,17 @@ namespace CommuteMonitoring.TrafficMonitor
             return UtcTimeConverter.ToEasternStandardTime(context.CurrentUtcDateTime).TimeOfDay;
         }
 
-        private static async Task SendNotification(IDurableOrchestrationContext context, TimeSpan currentTime, TimeSpan destinationTime, int timeToDestination)
+        [FunctionName("func-sendnotification")]
+        public static async Task SendNotification([ActivityTrigger]NotificationParameters parameters)
         {
-            var timeToLeave = destinationTime - TimeSpan.FromSeconds(timeToDestination);
-            var minutesToLeave = (timeToLeave - currentTime).TotalMinutes;
+            var timeToLeave = parameters.DestinationTime - TimeSpan.FromSeconds(parameters.TimeToDestination);
+            var minutesToLeave = (timeToLeave - parameters.CurrentTime).TotalMinutes;
 
-            var message = $"Leave in {(int)minutesToLeave} minutes to hit 66 route at {destinationTime.ToString(@"hh\:mm")}.";
-            await context.CallActivityAsync<int>("func-sendmessage", message);
-        }
+            var message = $"Leave in {(int)minutesToLeave} minutes to hit 66 route at {parameters.DestinationTime.ToString(@"hh\:mm")}.";
+            var queueClient = new QueueClient(Settings.NotificationQueueConnection, Settings.NotificationQueueName);
+            await queueClient.SendAsync(new Message(Encoding.UTF8.GetBytes(message)));
 
-
-        [FunctionName("func-sendmessage")]
-        public static async Task SendMessage([ActivityTrigger] string message, ILogger log)
-        {
-            var telegramClient = new TelegramClient(Settings.TelegramApiKey, Settings.TelegramChatId);
-
-            //ToDo: decouple with a message bus
-            var response = await telegramClient.SendMessage(message);
-            log.LogInformation($"Sending telegram message - {message}. Response status - {response}.");
+            await queueClient.CloseAsync();
         }
 
         [FunctionName("func-getcommutetime")]

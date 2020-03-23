@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommuteMonitoring.TrafficMonitor.Infrastructure
+namespace CommuteMonitoring.Notifications.Infrastructure
 {
     internal class Message
     {
